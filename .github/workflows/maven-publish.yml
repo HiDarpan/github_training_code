@@ -35,7 +35,7 @@ jobs:
       run: mkdir staging && cp ./target/*.war staging
 
     - name: Generate Docker images
-      run: cat --file ./staging
+      run: cat --file ./target/my-app.war
       # run: mvn -B package --file ./target/my-app.war
     #   run: mvn -B package --file .target/my-app.war
       # uses: docker/build-push-action@v5.1.0
