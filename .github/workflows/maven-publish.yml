@@ -7,7 +7,7 @@ name: Maven Package
 on:
   push:
     branches:
-      - 'feature/**'
+      - 'release/**'
 
 
 jobs:
@@ -30,12 +30,19 @@ jobs:
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    
-    - name: Build and push Docker images
-      run: mkdir staging && cp ./target/*.war staging
 
-    - name: Generate Docker images
-      run: cat --file ./target/my-app.war
+    - name: check running job for release2
+      if:
+          contains(github.ref, 'release/release2')
+      run: echo "job2 is running for release/release2"
+    
+        
+    
+    # - name: Build and push Docker images
+    #   run: mkdir staging && cp ./target/*.war staging
+
+    # - name: Generate Docker images
+    #   run: cat --file ./target/my-app.war
       # run: mvn -B package --file ./target/my-app.war
     #   run: mvn -B package --file .target/my-app.war
       # uses: docker/build-push-action@v5.1.0
